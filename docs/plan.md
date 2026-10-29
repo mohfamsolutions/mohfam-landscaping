@@ -1,0 +1,13 @@
+# Local landscaping build
+
+Build an independent static multipage site with a PHP inquiry endpoint, without changing sibling projects. Local preview is noindex; no production origin or hosting destination is assumed.
+
+Direction: family charcoal and gold, warm ivory, olive details, original rooted-tree emblem, local Inter body type with editorial Georgia headings. Logo revision: three gold leaves and branching roots in a charcoal rounded square replace the circular MF seal, which the user identified with Pool Cleaning. Varied page journeys: Home introduces the division and proposed care; About explains its family relationship; Services compares proposed scopes; detail pages clarify boundaries; Properties organizes inquiry needs; Contact gathers the scope.
+
+Completion: generated routes and local imagery, shared accessible navigation/FAQ/footer, proposed scopes visibly labeled, secure disabled-by-default mail, metadata/social cards and sitemap scaffolding, disabled deployment workflow, route/security checks. Verify rendered layouts with browser tools when available. Browser host is currently unavailable, so rendered desktop/mobile QA remains a release requirement.
+
+Release dependencies: service offerings, coverage, hours, property types, logo/copy approval, domain and folder proof, sender authentication, inbox delivery, final privacy policy and visual/keyboard review.
+
+Status on 2026-10-30: deployed to https://mohfamlandscaping.com after user authorization and independent HTTPS/FTPS folder proof. Eleven generated pages and eleven social cards pass automated checks; 410 internal references pass. Eleven HTTP/PHP/deployment tests pass. Live HTTPS routes, social bytes, shared assets, canonical redirects, duplicate alias redirects and branded 404s pass. PHP syntax and JavaScript syntax pass. Original QR hash matches. Photos and representative social cards inspected directly. Browser capture unavailable, so no rendered layout or interactive browser pass is claimed. Email stays disabled pending inbox verification and authentication follow-up; see docs/deployment.md.
+
+Reference findings: sibling Pool Cleaning screenshot and source show charcoal/gold, local Inter, pill CTAs, photographic hero, app panel and shared FAQs. Security public page corroborates shared app. Parent repository marks Landscaping coming soon. The old Cleaning domain is retired per parent documentation; the current family cleaning link is mohfamcommercialcleaning.com. Public homepage downloads returned hosting challenge documents, not usable reference HTML. No other domain or redirect was changed.

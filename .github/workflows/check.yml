@@ -1,0 +1,24 @@
+name: Check landscaping preview
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build.mjs
+      - run: node scripts/verify.mjs
+      - run: php -l public/api/contact.php
+      - run: php -l public/404.php
+      - run: node --test tests/*.test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: landscaping-local-preview
+          path: dist/
+          include-hidden-files: true

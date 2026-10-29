@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "canonicalOrigin": "https://mohfamlandscaping.com",
+  "verifiedDomain": "mohfamlandscaping.com",
+  "verifiedHostingDirectory": "/",
+  "verificationMarker": "mohfam-landscaping-7c99560d-ea5c-405a-9a6b-3adb1c921ec1",
+  "ftpHost": "p3plmcpnl503624.prod.phx3.secureserver.net",
+  "mappingVerifiedAt": "2026-10-29T20:15:07.557Z",
+  "mailEnabled": false,
+  "inboxDeliveryVerified": false,
+  "note": "Landscaping account root independently verified against HTTPS domain marker. Manual FTPS deployment only; mail stays disabled until delivery is verified."
+}

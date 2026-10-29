@@ -1,0 +1,1 @@
+{"name":"mohfam-landscaping","version":"1.0.0","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","dev":"node scripts/serve.mjs","verify":"node scripts/verify.mjs","test":"node --test tests/*.test.mjs"},"engines":{"node":">=22"},"devDependencies":{"basic-ftp":"^6.2.3"}}
