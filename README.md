@@ -34,6 +34,8 @@ Production origin is `https://mohfamlandscaping.com`, recorded in `deployment.js
 
 The build generates unique metadata, OG/X cards, Organization/WebSite/WebPage/BreadcrumbList schema, explicitly proposed Service descriptions and an image sitemap from actual routes. There are no ratings, unsupported LocalBusiness facts, city keywords or automatic modification dates. Eleven committed social JPEGs are 1200×630 and below 300 KB. A separate 512×512 PNG is used for the organization logo. Regenerate assets with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/create-social.ps1` on Windows; inspect representative results after regeneration.
 
+The current landscaping-only emblem also has dedicated SVG/ICO/PNG favicons, a 180px Apple touch icon and browser manifest. See [SEO and favicon details](docs/seo.md) for metadata targeting, icon sizes, verification and remaining Search Console account work.
+
 The landscaping folder's `.htaccess` redirects HTTP, www, explicit index files and its duplicate Security-domain subfolder alias to the canonical domain. `404.php` returns the branded page with a genuine 404 status on Apache. No parent-directory or other website configuration is edited.
 
 GitHub Actions CI builds, verifies and tests. Manual `Deploy verified landscaping site` uses the dedicated `landscaping-production` environment, revalidates the HTTPS and FTPS identity marker, backs up current content, uploads without deletion and checks live routes/assets/redirects. Credentials are stored only in environment secrets. Read [deployment details](docs/deployment.md) before operating the workflow.
