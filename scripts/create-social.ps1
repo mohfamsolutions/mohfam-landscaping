@@ -1,6 +1,8 @@
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 node scripts/social-data.mjs
+node scripts/create-logo.mjs
+$logoArtwork = Get-Content data/logo.json -Raw -Encoding UTF8 | ConvertFrom-Json
 $socialPages = Get-Content artifacts/social-data.json -Raw -Encoding UTF8 | ConvertFrom-Json
 $socialDirectory = Join-Path $PWD 'public/assets/social'
 New-Item -ItemType Directory -Force $socialDirectory | Out-Null
@@ -14,44 +16,21 @@ function Draw-Emblem($graphics, [single]$left, [single]$top, [single]$size) {
   $saved = $graphics.Save()
   $graphics.TranslateTransform($left,$top)
   $graphics.ScaleTransform($size/100,$size/100)
-  $tile = [System.Drawing.Drawing2D.GraphicsPath]::new()
-  $tile.AddArc(0,0,38,38,180,90)
-  $tile.AddArc(62,0,38,38,270,90)
-  $tile.AddArc(62,62,38,38,0,90)
-  $tile.AddArc(0,62,38,38,90,90)
-  $tile.CloseFigure()
-  $graphics.FillPath($ink,$tile)
-  $canopy = [System.Drawing.Drawing2D.GraphicsPath]::new()
-  $canopy.AddBezier(50,42,37,33,39,21,50,12)
-  $canopy.AddBezier(50,12,61,21,63,33,50,42)
-  $canopy.CloseFigure()
-  $canopy.StartFigure()
-  $canopy.AddBezier(43,53,28,54,19,43,20,29)
-  $canopy.AddBezier(20,29,35,29,46,38,43,53)
-  $canopy.CloseFigure()
-  $canopy.StartFigure()
-  $canopy.AddBezier(57,53,72,54,81,43,80,29)
-  $canopy.AddBezier(80,29,65,29,54,38,57,53)
-  $canopy.CloseFigure()
-  $graphics.FillPath($gold,$canopy)
-  $branchPen = [System.Drawing.Pen]::new($gold,3)
-  $branchPen.StartCap = 'Round'; $branchPen.EndCap = 'Round'
-  $graphics.DrawLine($branchPen,50,37,50,67)
-  $graphics.DrawLine($branchPen,50,61,33,44)
-  $graphics.DrawLine($branchPen,50,61,67,44)
-  $graphics.DrawBezier($branchPen,50,67,50,75,45,80,36,84)
-  $graphics.DrawBezier($branchPen,50,67,50,75,55,80,64,84)
-  $graphics.DrawLine($branchPen,50,66,50,86)
-  $rootPen = [System.Drawing.Pen]::new($gold,2)
-  $rootPen.StartCap = 'Round'; $rootPen.EndCap = 'Round'
-  $graphics.DrawLine($rootPen,36,84,28,83)
-  $graphics.DrawLine($rootPen,64,84,72,83)
-  $veinPen = [System.Drawing.Pen]::new($ink,1.3)
-  $veinPen.StartCap = 'Round'; $veinPen.EndCap = 'Round'
-  $graphics.DrawLine($veinPen,50,21,50,37)
-  $graphics.DrawLine($veinPen,27,36,39,49)
-  $graphics.DrawLine($veinPen,73,36,61,49)
-  $tile.Dispose(); $canopy.Dispose(); $branchPen.Dispose(); $rootPen.Dispose(); $veinPen.Dispose()
+  foreach ($shape in $logoArtwork.shapes) {
+    $path = [System.Drawing.Drawing2D.GraphicsPath]::new()
+    [single]$px = 0; [single]$py = 0
+    foreach ($command in $shape.commands) {
+      switch ($command[0]) {
+        'M' { $path.StartFigure(); $px = $command[1]; $py = $command[2] }
+        'L' { $path.AddLine($px,$py,[single]$command[1],[single]$command[2]); $px = $command[1]; $py = $command[2] }
+        'C' { $path.AddBezier($px,$py,[single]$command[1],[single]$command[2],[single]$command[3],[single]$command[4],[single]$command[5],[single]$command[6]); $px = $command[5]; $py = $command[6] }
+        'Z' { $path.CloseFigure() }
+      }
+    }
+    if ($shape.fill -ne 'none') { $fillBrush = New-Brush $shape.fill; $graphics.FillPath($fillBrush,$path); $fillBrush.Dispose() }
+    if ($shape.stroke) { $strokeBrush = New-Brush $shape.stroke; $strokePen = [System.Drawing.Pen]::new($strokeBrush,[single]$shape.width); $strokePen.StartCap = 'Round'; $strokePen.EndCap = 'Round'; $strokePen.LineJoin = 'Round'; $graphics.DrawPath($strokePen,$path); $strokePen.Dispose(); $strokeBrush.Dispose() }
+    $path.Dispose()
+  }
   $graphics.Restore($saved)
 }
 $logo = [System.Drawing.Bitmap]::new(512,512)
