@@ -22,7 +22,7 @@ php -S 127.0.0.1:4176 -t dist scripts/router.php
 
 ## Content and identity
 
-`data/site.mjs` owns confirmed contacts, proposed scopes, FAQs, footer and family links. `data/seo.mjs` owns page metadata and search purpose. `scripts/build.mjs` composes page-specific layouts. The landscaping logo uses a custom serif MF monogram, a fine double arch inspired by a garden entrance, and a botanical sprig on charcoal. The user requested a premium MF identity related to the Pool Cleaning refinement, with a distinct landscaping composition. `data/logo.json` is the shared vector source for the SVG, organization PNG and social-card rendering; regenerate with `scripts/create-social.ps1`. Local Inter, photography and shared app artwork complete the assets.
+`data/site.mjs` owns confirmed contacts, proposed scopes, FAQs, footer and family links. `data/seo.mjs` owns page metadata and search purpose. `scripts/build.mjs` composes page-specific layouts. The landscaping logo uses a leafy plant above a geometric planting bed, framed by a fine double garden arch on charcoal. The user requested a premium landscaping symbol with no MF lettering. `data/logo.json` is the shared vector source for the SVG, organization PNG and social-card rendering; regenerate with `scripts/create-social.ps1`. Local Inter, photography and shared app artwork complete the assets.
 
 Pages: Home, About, Services, four proposed care scopes (lawn/grounds, garden/planting, seasonal cleanup, irrigation), Properties, Contact, Privacy and branded 404. Service scopes and property audiences are explicitly proposed. Areas, hours, prices, launch timing, credentials, availability and project history are not asserted.
 
